@@ -12,11 +12,18 @@ const Form = (props) => {
     const changeHandler = (e) => {
         setMember({...member, [e.target.name] : e.target.value})
         console.log(e.target.name);
+        // console.log(member)
+    }
+
+    const submitForm = e => {
+        e.preventDefault();
+        props.addNewMember(member);
+        setMember({name: '', email: '', role: ''})
     }
 
     return (
         // <div>Hello</div>
-        <form>
+        <form className = 'form'onSubmit = {submitForm}>
             <label htmlFor = 'name'>Name: </label>
             <input
             type = 'text' 
@@ -24,6 +31,7 @@ const Form = (props) => {
             name = 'name'
             id = 'name'
             onChange = {changeHandler}
+            value = {member.name}
             />
 
             <label htmlFor = 'email'>Email: </label>
@@ -33,6 +41,7 @@ const Form = (props) => {
             name = 'email'
             id = 'email'
             onChange = {changeHandler}
+            value = {member.email}
             />
 
             <label htmlFor = 'role'>Desired Role: </label>
@@ -42,12 +51,11 @@ const Form = (props) => {
             name = 'role'
             id = 'role'
             onChange = {changeHandler}
+            value = {member.role}
             />
+            <button type = 'submit'>Join Team Avatar</button>
         </form>
     )
-    
-
-
-}
+};
 
 export default Form;

@@ -3,14 +3,22 @@ import logo from './logo.svg';
 import './App.css';
 import data from './data.js';
 import Form from './components/Form';
+import TeamBuilder from './components/TeamBuilder';
 
 function App() {
-  const [teamMember, setTeamMember] = useState('data');
+  const [teamMembers, setTeamMembers] = useState(data);
+
+  const addNewMember = member => {
+    setTeamMembers([...teamMembers, member])
+  }
+
 
   return (
     <div className="App">
       <h1>Team Avatar</h1>
-      <Form/>
+      <Form addNewMember = {addNewMember}/>
+      <TeamBuilder data = {teamMembers}/>
+      
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
